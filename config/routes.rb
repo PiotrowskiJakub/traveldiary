@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :destinations, only: :index
-  
+
   resources :trips do
     resources :destinations
   end
