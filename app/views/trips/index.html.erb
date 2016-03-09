@@ -19,15 +19,17 @@
         <td><%= trip.name %></td>
         <td><%= trip.description %></td>
         <td><%=l trip.created_at %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_trip_path(trip), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      trip_path(trip),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
+        <% if user_signed_in? && current_user == trip.user %>
+          <td>
+            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                        edit_trip_path(trip), :class => 'btn btn-default btn-xs' %>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        trip_path(trip),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-xs btn-danger' %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

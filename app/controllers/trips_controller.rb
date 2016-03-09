@@ -27,6 +27,7 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(trip_params)
+    @trip.user = current_user
 
     respond_to do |format|
       if @trip.save
@@ -77,6 +78,6 @@ class TripsController < ApplicationController
     def owns_trip
       if !user_signed_in? || current_user != Trip.find(params[:id]).user
         redirect_to trips_path, error: "You cannot do that"
-      end 
+      end
     end
 end
