@@ -1,4 +1,4 @@
-<%= form_for @destination, :html => { :class => "form-horizontal destination" } do |f| %>
+<%= form_for [@trip, @destination], :html => { :class => "form-horizontal destination" } do |f| %>
 
   <% if @destination.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
